@@ -307,3 +307,51 @@ function trapFocus(element) {
     }
   });
 }
+
+// Contact form handling
+document.addEventListener("DOMContentLoaded", function () {
+  const contactForm = document.querySelector(".contact-form");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Get form data
+      const formData = new FormData(contactForm);
+      const name = formData.get("name");
+      const email = formData.get("email");
+      const message = formData.get("message");
+
+      // Basic validation
+      if (!name || !email || !message) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      // Submit button feedback
+      const submitBtn = contactForm.querySelector(".contact-submit-btn");
+      const originalText = submitBtn.innerHTML;
+
+      submitBtn.innerHTML =
+        '<svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="currentColor"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite"/></circle></svg>Sending...';
+      submitBtn.disabled = true;
+
+      // Simulate form submission (replace with actual form handling)
+      setTimeout(() => {
+        alert(
+          `Thank you ${name}! Your message has been sent. I'll get back to you soon.`
+        );
+        contactForm.reset();
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 2000);
+    });
+  }
+});
