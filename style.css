@@ -819,7 +819,7 @@ h2 {
 footer {
   background: var(--gray);
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
   border-top: 1px solid var(--border);
   color: var(--text-muted);
 }
